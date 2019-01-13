@@ -1499,6 +1499,11 @@ bin_SCRIPTS += utils/qpaeq
 endif
 endif
 
+if GENIVI_AM
+modlibexec_LTLIBRARIES += \
+		module-genivi-am.la
+endif
+
 # Simple protocol
 
 module_simple_protocol_tcp_la_SOURCES = modules/module-protocol-stub.c
@@ -1694,6 +1699,11 @@ module_equalizer_sink_la_SOURCES = modules/module-equalizer-sink.c
 module_equalizer_sink_la_CFLAGS = $(AM_CFLAGS) $(SERVER_CFLAGS) $(DBUS_CFLAGS) $(FFTW_CFLAGS) -DPA_MODULE_NAME=module_equalizer_sink
 module_equalizer_sink_la_LDFLAGS = $(MODULE_LDFLAGS)
 module_equalizer_sink_la_LIBADD = $(MODULE_LIBADD) $(DBUS_LIBS) $(FFTW_LIBS)
+
+module_genivi_am_la_SOURCES = modules/module-genivi-am.c
+module_genivi_am_la_CFLAGS = $(AM_CFLAGS)
+module_genivi_am_la_LDFLAGS = $(MODULE_LDFLAGS)
+module_genivi_am_la_LIBADD = $(MODULE_LIBADD)
 
 module_match_la_SOURCES = modules/module-match.c
 module_match_la_LDFLAGS = $(MODULE_LDFLAGS)

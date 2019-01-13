@@ -1170,6 +1170,27 @@ AS_IF([test "x$with_fftw" = "xyes" && test "x$HAVE_FFTW" = "x0"],
 
 AM_CONDITIONAL([HAVE_FFTW], [test "x$HAVE_FFTW" = "x1"])
 
+#### Genivi Audio Manager (optional) ####
+
+AC_ARG_ENABLE([genivi-am],
+        AC_HELP_STRING([--disable-genivi-am],[Disable optional Genivi Audio Manager module support]),
+        [
+            case "${enableval}" in
+                yes) genivi-am=yes ;;
+                no) genivi-am=no ;;
+                *) AC_MSG_ERROR(bad value ${enableval} for --disable-genivi-am) ;;
+            esac
+        ],
+        [genivi-am=no])
+
+if test "x${genivi-am}" != xno ; then
+    GENIVI_AM=1
+else
+    GENIVI_AM=0
+fi
+
+AM_CONDITIONAL([GENIVI_AM], [test "x$GENIVI_AM" = x1])
+
 #### speex (optional) ####
 
 AC_ARG_WITH([speex],
